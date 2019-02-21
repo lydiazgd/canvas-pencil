@@ -11,4 +11,4 @@ let space = {
     continuity: true
 }
 
-export {space};
+export { space };

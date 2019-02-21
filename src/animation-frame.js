@@ -4,4 +4,4 @@ class ControlAnimation {
     }
 }
 
-export {ControlAnimation};
+export { ControlAnimation };

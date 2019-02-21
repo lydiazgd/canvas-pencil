@@ -7,6 +7,7 @@ class AnimationStart {
         this.body = $("body");
         this.ca = new ControlAnimation();
     }
+
     listenMousemove () {
         let self = this;
         this.body.mousemove((e)=>{
@@ -23,6 +24,7 @@ class AnimationStart {
         });
         this.init();
     }
+
     init () {
         let width, height;
         width = this.body.width();
@@ -42,6 +44,7 @@ class AnimationStart {
             $(space.bgImage).attr("src", "./assets/bg.jpg");
         }
     }
+
     drawAnimation () {
         let scrollPart = this.body.scrollTop(), transferTime = Date.now();
         space.continuity = transferTime > space.triggerTime + 500 ? false:true;
@@ -51,11 +54,13 @@ class AnimationStart {
             axis: space.axis + scrollPart
         });
         for(let count = 0; count < space.pointStack.length;)
-          1000 < transferTime - space.pointStack[count].time ? space.pointStack.length = count: count++;
+            1000 < transferTime - space.pointStack[count].time ? space.pointStack.length = count: count++;
         space.pointStack.length > 0 && this.ca.requestAnimationFrame(this.drawAnimation.bind(this));
         space.coverbg.clearRect(0, 0, space.coverCanvas.width, space.coverCanvas.height);
         for(let i = 1; i < space.pointStack.length; i ++) {
-            let distance = Math.sqrt(Math.pow(space.pointStack[i].abscissa - space.pointStack[i-1].abscissa, 2) + Math.pow(space.pointStack[i].axis - space.pointStack[i - 1].axis, 2));
+            let distance = Math.sqrt(
+                Math.pow(space.pointStack[i].abscissa - space.pointStack[i-1].abscissa, 2) 
+                + Math.pow(space.pointStack[i].axis - space.pointStack[i - 1].axis, 2));
             space.coverbg.strokeStyle = "rgba(0,0,0," + Math.max(1 - (transferTime - space.pointStack[i].time)/1000, 0) + ")";
             space.coverbg.lineWidth = 25 + 75*Math.max(1 - distance/50, 0);
             space.coverbg.beginPath();
@@ -71,6 +76,7 @@ class AnimationStart {
         space.background.drawImage(space.coverCanvas, 0, 0);
         space.background.globalCompositeOperation = "source-over";
     }
+
 }
 
-export {AnimationStart}
+export { AnimationStart }
