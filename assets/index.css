@@ -1,0 +1,18 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    background-color: #3f4652;
+    background-image: url('bg2.jpg');
+    background-size: cover;
+    background-position: 0, 0;
+    position: relative;
+    min-height: 700px;
+    perspective: 400px;
+}
+.loginFun {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
