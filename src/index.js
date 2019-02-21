@@ -4,5 +4,5 @@ import '../assets/index.css';
 
 $(()=>{
     const animation = new AnimationStart();
-    "createTouch" in document || $(animation.listenMousemove.bind(animation));
+    "createTouch" in document || animation.listenMousemove();
 });
