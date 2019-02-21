@@ -37,17 +37,23 @@ class AnimationStart {
         space.coverCanvas = document.createElement("canvas");
         space.coverCanvas.width = width;
         space.coverCanvas.height = height;
-        if(space.bgCanvas.getContext && space.bgCanvas.getContext("2d") && (space.background = space.bgCanvas.getContext("2d"), space.coverbg = space.coverCanvas.getContext("2d"),
-            space.coverbg.lineCap = "round", space.coverbg.shadowColor = "#000000", space.coverbg.shadowBlur = -1 < navigator.userAgent.indexOf("Firefox") ? 0 : 30, !space.bgImage)) {
-            space.bgImage = new Image;
-            $(space.bgImage).one("load", this.drawAnimation.bind(this));
-            $(space.bgImage).attr("src", "./assets/bg.jpg");
+        if(space.bgCanvas.getContext && space.bgCanvas.getContext("2d")) {
+            space.background = space.bgCanvas.getContext("2d");
+            space.coverbg = space.coverCanvas.getContext("2d");
+            space.coverbg.lineCap = "round";
+            space.coverbg.shadowColor = "#000000";
+            space.coverbg.shadowBlur = -1 < navigator.userAgent.indexOf("Firefox") ? 0 : 30;
+            if(!space.bgImage) {
+                space.bgImage = new Image;
+                $(space.bgImage).one("load", this.drawAnimation.bind(this));
+                $(space.bgImage).attr("src", "./assets/bg.jpg");
+            }
         }
     }
 
     drawAnimation () {
         let scrollPart = this.body.scrollTop(), transferTime = Date.now();
-        space.continuity = transferTime > space.triggerTime + 500 ? false:true;
+        space.continuity = transferTime <= space.triggerTime + 500;
         space.abscissa && space.continuity && space.pointStack.unshift({
             time: transferTime,
             abscissa: space.abscissa,
