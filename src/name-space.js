@@ -1,4 +1,4 @@
-let space = {
+const space = {
     bgCanvas: null,
     coverCanvas: null,
     background: null,
@@ -8,7 +8,7 @@ let space = {
     axis: null,
     pointStack: [],
     triggerTime: 0,
-    continuity: true
-}
+    continuity: true,
+};
 
-export { space };
+export default space;
